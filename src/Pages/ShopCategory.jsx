@@ -5,10 +5,10 @@ import dropdown_icon from "../assets/dropdown_icon.png";
 import Item from "../Components/Item/Item";
 
 const ShopCategory = ({ banner, category }) => {
-  const { all_product } = useContext(ShopContext);
+  const { all_products } = useContext(ShopContext);
   return (
     <div className="shop-category">
-      <img src={banner} alt="" />
+      <img className="shopcategory-banner" src={banner} alt="" />
       <div className="shopcategory-indexSort">
         <p>
           <span>Showing 1-12</span> out of 36 products
@@ -18,7 +18,7 @@ const ShopCategory = ({ banner, category }) => {
         </div>
       </div>
       <div className="shopcategory-products">
-        {all_product.map((item, i) => {
+        {all_products.map((item, i) => {
           if (category === item.category) {
             return (
               <Item
@@ -30,8 +30,13 @@ const ShopCategory = ({ banner, category }) => {
                 old_price={item.old_price}
               />
             );
+          } else {
+            return null;
           }
         })}
+      </div>
+      <div className="shopcategory-loadmore">
+        Load More..
       </div>
     </div>
   );
